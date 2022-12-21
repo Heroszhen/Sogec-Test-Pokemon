@@ -1,0 +1,9 @@
+https://github.com/Kimouss/Sogec-Test-Pokemon
+
+
+composer require api
+composer require api-platform/api-pack
+composer require symfony/web-server-bundle --dev
+
+---explication de la table des monstres
+https://blog.csdn.net/weixin_43615654/article/details/103283493
