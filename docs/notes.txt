@@ -7,3 +7,9 @@ composer require symfony/web-server-bundle --dev
 
 ---explication de la table des monstres
 https://blog.csdn.net/weixin_43615654/article/details/103283493
+
+
+---Tutoriel API Platform/Symfony : Module de commentaires : API Platform
+https://www.youtube.com/watch?v=Neb4GBRP7eg&t=244s
+collectionOperations={""} : get(s) , post(s)
+itemOperation={""}: get(id),put(id),delete(id)
