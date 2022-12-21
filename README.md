@@ -6,7 +6,7 @@
 - Entrer dans le projet
 - Modifier le fichier .env.local(ce fichier ne doit pas exister en production) : username et password ou le nom de la base données
 - chmod 755 cmds/*
-- ./cmds/createdb.sh
+- ./cmds/createdb.sh (les bundles dans vendor , la base données et les tables seront installés automatiquement)
 
 ## Import du fichier csv
 - Taper la commande : php bin/console app:import:csv filepath
