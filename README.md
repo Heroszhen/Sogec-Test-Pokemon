@@ -10,5 +10,5 @@
 
 ## Import du fichier csv
 - Taper la commande : php bin/console app:import:csv filepath
-La chaîne de caractères qui suit la commande  "app:import:csv" est le chemin du fichier,
+- La chaîne de caractères qui suit la commande  "app:import:csv" est le chemin du fichier,
 elle est sous cette forme : /path/path/file.csv, elle ne doit pas contenir d'antislash.
