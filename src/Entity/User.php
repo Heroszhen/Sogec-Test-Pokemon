@@ -5,10 +5,30 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
+use App\Controller\RegistrationController;
+use App\Validator\Constraints\CheckPassword; 
+//use App\Controller\ConnectionController;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity(fields={"email"}, message="Il existe déjà un utilisateur avec ce mail")
+ * @ApiResource(
+ *      normalizationContext={"group"={"read"}},
+ *      denormalizationContext={"groups"={"logup"}},
+ *      collectionOperations={
+ *          "registration" = {
+ *              "method" = "POST",
+ *              "path" = "/users/registration",
+ *              "controller" = RegistrationController::class,
+ *              "openapi_context"={"summary"="logup"}
+ *          }
+ *      },
+ *      itemOperations={"get"}
+ * )
  */
 class User implements UserInterface
 {
@@ -16,24 +36,47 @@ class User implements UserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"logup","read"})
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=180, unique=true)
+     * @ORM\Column(type="string", length=180, unique=true, options={"default":""})
+     * @Groups({"logup"})
+     * @Assert\Email(message = "Le mail '{{ value }}' que vous avez entré n'est pas un mail validé",checkMX = true)
+     * @Assert\NotBlank(message = "Veuillez mettre un mail")
      */
     private $email;
 
     /**
      * @ORM\Column(type="json")
+     * @Groups({"read"})
      */
-    private $roles = [];
+    private $roles = ['ROLE_USER'];
 
     /**
      * @var string The hashed password
-     * @ORM\Column(type="string")
+     * 
+     * @CheckPassword
+     * @ORM\Column(type="string", options={"default":""})
+     * @Groups({"logup"})
      */
     private $password;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true, options={"default": "CURRENT_TIMESTAMP"})
+     * @Groups({"read"})
+     */
+    private $created;
+
+    /**
+     * (type="string", length=255)
+     */
+    private $username;
+
+    public function __construct(){
+        $this->created = new \DateTime();
+    }
 
     public function getId(): ?int
     {
@@ -114,5 +157,24 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getCreated(): ?\DateTimeInterface
+    {
+        return $this->created;
+    }
+
+    public function setCreated(?\DateTimeInterface $created): self
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
+
+        return $this;
     }
 }

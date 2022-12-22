@@ -13,3 +13,18 @@ https://blog.csdn.net/weixin_43615654/article/details/103283493
 https://www.youtube.com/watch?v=Neb4GBRP7eg&t=244s
 collectionOperations={""} : get(s) , post(s)
 itemOperation={""}: get(id),put(id),delete(id)
+
+https://api-platform.com/docs/core/configuration/
+
+
+https://www.youtube.com/watch?v=Ge2pix7A7vM
+Découverte d'API Platform : Pagination et Filtres
+
+https://www.youtube.com/watch?v=bewgb9buIfI
+Découverte d'API Platform : Authentification JSON
+
+/api/login_check
+{
+    "email":"aaa@gmail.com",
+    "password": "Aa123456789;"
+}
