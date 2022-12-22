@@ -19,7 +19,7 @@ elle est sous cette forme : path/file.csv, elle ne doit pas contenir d'antislash
 - ./cmds/clear.sh
 - Lancer un serveur local: php bin/console server:run
 - Router: http://127.0.0.1:8000/api/users/registration
-- Contenu à envoyer : 
+- Contenu à envoyer en post : 
     {
         "email":"aaa@gmail.com",
         "password": "Aa123456789;"
@@ -32,3 +32,10 @@ elle est sous cette forme : path/file.csv, elle ne doit pas contenir d'antislash
     - ./cmds/createdb.sh
     - ./cmds/clear.sh
     - Lancer un serveur local: php bin/console server:run
+- Router: http://127.0.0.1:8000/api/login_check
+- Contenu à envoyer en post : 
+    {
+        "email":"aaa@gmail.com",
+        "password": "Aa123456789;"
+    }
+- Si tout se passe bien , un token vous sera retourné.
