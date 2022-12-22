@@ -18,7 +18,7 @@ elle est sous cette forme : path/file.csv, elle ne doit pas contenir d'antislash
 - ./cmds/createdb.sh
 - ./cmds/clear.sh
 - Lancer un serveur local: php bin/console server:run
-- Router: http://127.0.0.1:8000/api/users/registration
+- Route: http://127.0.0.1:8000/api/users/registration
 - Contenu à envoyer en post : 
     {
         "email":"aaa@gmail.com",
@@ -30,12 +30,21 @@ elle est sous cette forme : path/file.csv, elle ne doit pas contenir d'antislash
 - Si vous n'avez pas fait les étapes précédentes : 
     - chmod 755 cmds/*
     - ./cmds/createdb.sh
-    - ./cmds/clear.sh
     - Lancer un serveur local: php bin/console server:run
-- Router: http://127.0.0.1:8000/api/login_check
+- ./cmds/clear.sh
+- Route: http://127.0.0.1:8000/api/login_check
 - Contenu à envoyer en post : 
     {
         "email":"aaa@gmail.com",
         "password": "Aa123456789;"
     }
 - Si tout se passe bien , un token vous sera retourné.
+
+## Index / Show
+- Si vous n'avez pas fait les étapes précédentes : 
+    - chmod 755 cmds/*
+    - ./cmds/createdb.sh
+    - Lancer un serveur local: php bin/console server:run
+- ./cmds/clear.sh
+- Route: http://127.0.0.1:8000/api/monsters ; http://127.0.0.1:8000/api/monsters/{id}
+- Vous pouvez les tester sur http://127.0.0.1:8000/api une fois que votre serveur local est lancé

@@ -4,9 +4,25 @@ namespace App\Entity;
 
 use App\Repository\MonsterRepository;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\NumericFilter;
+use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * @ORM\Entity(repositoryClass=MonsterRepository::class)
+ * @ApiResource(
+ *      attributes={
+ *          "pagination_client_items_per_page"=true,
+ *          "pagination_items_per_page"=50
+ *      },
+ *      collectionOperations={"get"},
+ *      itemOperations={"get"}
+ * )
+ * @ApiFilter(SearchFilter::class, properties={"name": "ipartial","type1": "ipartial","type2": "ipartial"})
+ * @ApiFilter(BooleanFilter::class, properties={"islegendary"})
+ * @ApiFilter(NumericFilter::class, properties={"generation"})
  */
 class Monster
 {
