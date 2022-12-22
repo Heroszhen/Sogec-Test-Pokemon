@@ -9,6 +9,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\NumericFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=MonsterRepository::class)
@@ -17,8 +18,16 @@ use ApiPlatform\Core\Annotation\ApiResource;
  *          "pagination_client_items_per_page"=true,
  *          "pagination_items_per_page"=50
  *      },
+ *      denormalizationContext={"groups"={"write"}},
  *      collectionOperations={"get"},
- *      itemOperations={"get"}
+ *      itemOperations={
+ *          "get",
+ *          "put"={
+ *              "security"="is_granted('MONSTER_UPDATE', object) and object.getIslegendary() == false", 
+ *              "security_message"="Vous ne pouvez pas modifier un monstre légendaire ou le type n'existe pas"
+ *          },
+ *          "delete"={"security"="object.getIslegendary() == false", "security_message"="Vous ne pouvez pas supprimer un monstre légendaire"}
+ *      }
  * )
  * @ApiFilter(SearchFilter::class, properties={"name": "ipartial","type1": "ipartial","type2": "ipartial"})
  * @ApiFilter(BooleanFilter::class, properties={"islegendary"})
@@ -40,11 +49,13 @@ class Monster
 
     /**
      * @ORM\Column(type="string", length=255, options={"default": ""})
+     * @Groups({"write"})
      */
     private $name = "";
 
     /**
      * @ORM\Column(type="string", length=255, options={"default": ""})
+     * @Groups({"write"})
      */
     private $type1 = "";
 
@@ -90,11 +101,13 @@ class Monster
 
     /**
      * @ORM\Column(type="integer", options={"default": 0})
+     * @Groups({"write"})
      */
     private $generation = 0;
 
     /**
      * @ORM\Column(type="boolean", options={"default": false})
+     * @Groups({"write"})
      */
     private $islegendary = false;
 

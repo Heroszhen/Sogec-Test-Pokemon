@@ -46,5 +46,15 @@ elle est sous cette forme : path/file.csv, elle ne doit pas contenir d'antislash
     - ./cmds/createdb.sh
     - Lancer un serveur local: php bin/console server:run
 - ./cmds/clear.sh
-- Routes: http://127.0.0.1:8000/api/monsters ; http://127.0.0.1:8000/api/monsters/{id}
+- Routes: http://127.0.0.1:8000/api/monsters (get); http://127.0.0.1:8000/api/monsters/{id} (get)
+- Vous pouvez les tester sur http://127.0.0.1:8000/api une fois que votre serveur local est lancé
+
+
+## Edit / Delete
+- Si vous n'avez pas fait les étapes précédentes : 
+    - chmod 755 cmds/*
+    - ./cmds/createdb.sh
+    - Lancer un serveur local: php bin/console server:run
+- ./cmds/clear.sh
+- Routes: http://127.0.0.1:8000/api/monsters/{id}  (put) ; http://127.0.0.1:8000/api/monsters/{id} (delete)
 - Vous pouvez les tester sur http://127.0.0.1:8000/api une fois que votre serveur local est lancé

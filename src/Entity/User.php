@@ -27,7 +27,7 @@ use App\Validator\Constraints\CheckPassword;
  *              "openapi_context"={"summary"="logup"}
  *          }
  *      },
- *      itemOperations={"get"}
+ *      itemOperations={}
  * )
  */
 class User implements UserInterface
