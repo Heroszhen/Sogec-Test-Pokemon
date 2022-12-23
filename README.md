@@ -58,3 +58,8 @@ elle est sous cette forme : path/file.csv, elle ne doit pas contenir d'antislash
 - ./cmds/clear.sh
 - Routes: http://127.0.0.1:8000/api/monsters/{id}  (put) ; http://127.0.0.1:8000/api/monsters/{id} (delete)
 - Vous pouvez les tester sur http://127.0.0.1:8000/api une fois que votre serveur local est lancé
+
+
+## test unitair
+- tests/UserTest.php
+- commande : ./vendor/bin/phpunit
