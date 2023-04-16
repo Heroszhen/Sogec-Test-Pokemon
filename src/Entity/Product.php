@@ -11,7 +11,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ProductRepository::class)
- * ApiResource(
+ * @ApiResource(
  *      attributes={
  *          "order"={"name":"desc"},
  *          "pagination_client_items_per_page"=true,
@@ -24,7 +24,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *          "delete" = {"security" = "is_granted('PRODUCT_DELETE', object)"}
  *      }
  * )
- * ApiFilter(SearchFilter::class, properties={"name": "ipartial","price": "exact"})
+ * @ApiFilter(SearchFilter::class, properties={"name": "ipartial","price": "exact"})
  */
 class Product
 {
